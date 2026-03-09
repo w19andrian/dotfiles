@@ -1,0 +1,7 @@
+[keyboard]
+bindings = [
+  { key = "ArrowRight", mods = "Alt", mode = "AppCursor", chars = "\u0005" },      # Jump to beginning of the line
+  { key = "ArrowLeft", mods = "Alt", mode = "AppCursor", chars = "\u0001" },       # Jump to the end of the line
+  { key = "ArrowRight", mods = "Control", mode = "AppCursor", chars = "\u001bf" },
+  { key = "ArrowLeft", mods = "Control", mode = "AppCursor", chars = "\u001bb" },
+]

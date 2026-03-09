@@ -1,0 +1,44 @@
+"  Basic configurations
+
+set nocompatible
+
+filetype on
+filetype plugin on
+filetype indent on
+
+syntax on
+set showmatch
+set number
+set ruler
+set relativenumber
+set showmode
+set ttyfast
+set enc=utf-8
+
+set tabstop=4
+set shiftwidth=4
+set smarttab
+set expandtab
+set autoindent
+set smartindent
+set scrolloff=5
+
+set nobackup
+set nowritebackup
+
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
+
+set laststatus=2
+set showcmd
+
+" load plugins
+source ~/.config/vim/config/plugs.vim
+
+" load keymaps
+source ~/.config/vim/config/keymaps.vim
+
+colorscheme vesper
+

@@ -1,0 +1,94 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$HOME/Projekt"
+CREATE_LABEL="[+] Create new project"
+DEFAULT_TERM_LABEL=" Just gimme the goddamn terminal!!"
+DEFAULT_TERM_NAME="termy_4_normy"
+
+usage() {
+	cat <<EOF
+Usage:
+  p <project-name>
+
+Switch to an existing project session.
+
+Projects live under:
+  $ROOT
+EOF
+}
+
+require_tmux() {
+	if ! command -v tmux >/dev/null 2>&1; then
+		echo "Error: tmux is not installed or not in PATH."
+		echo "Please install tmux to use this command."
+		exit 1
+	fi
+}
+
+switch_or_attach() {
+	local name="$1"
+	local dir="$ROOT/$name"
+
+	if ! tmux has-session -t "$name" 2>/dev/null; then
+		tmux new-session -d -s "$name" -c "$dir"
+	fi
+
+	if [[ -n "${TMUX:-}" ]]; then
+		tmux switch-client -t "$name"
+	else
+		tmux attach -t "$name"
+	fi
+}
+
+create_project() {
+	read -rp "New project name: " name
+	[[ -z "$name" ]] && exit 0
+
+	mkdir -p "$ROOT/$name"
+	switch_or_attach "$name"
+}
+
+interactive_mode() {
+	{
+		find "$ROOT" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort
+		echo "===================="
+		echo "$DEFAULT_TERM_LABEL"
+		echo "────────────────────"
+		echo "$CREATE_LABEL"
+	} | fzf --prompt="Projekt > " --height=40% --reverse
+}
+
+main() {
+	require_tmux
+
+	if [[ $# -eq 0 ]]; then
+		if command -v fzf >/dev/null 2>&1; then
+			selection="$(interactive_mode || true)"
+			[[ -z "$selection" ]] && exit 0
+
+			if [[ "$selection" == "$CREATE_LABEL" ]]; then
+				create_project
+			elif [[ "$selection" == "$DEFAULT_TERM_LABEL" ]]; then
+				switch_or_attach "$DEFAULT_TERM_NAME"
+			elif [[ "$selection" != "────────────────────" && "$selection" != "====================" ]]; then
+				switch_or_attach "$selection"
+			fi
+		else
+			usage
+		fi
+		exit 0
+	fi
+
+	name="$1"
+	dir="$ROOT/$name"
+
+	if [[ ! -d "$dir" ]]; then
+		echo "Project does not exist: $name"
+		exit 1
+	fi
+
+	switch_or_attach "$name"
+}
+
+main "$@"

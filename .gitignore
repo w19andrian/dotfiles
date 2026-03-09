@@ -1,0 +1,12 @@
+# tmux plugins dir
+tmux/plugins/*
+
+# vim plugged
+vim/plugged/*
+
+# netrw history file
+**/.netrwhist
+
+# List of generated config files
+# should not be pushed to git
+*alacritty.toml

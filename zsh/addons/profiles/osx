@@ -1,0 +1,14 @@
+## General
+export PATH="$HOMEBREW_OPT_DIR/openssl/bin:$PATH"
+export PATH="$HOMEBREW_OPT_DIR/openjdk@21/bin:$PATH"
+export PATH=$HOMEBREW_OPT_DIR/python@3.12/libexec/bin:$PATH
+
+arch=$(uname -p)
+if [[ "${arch}" == "x86_64" ]]; then
+	export HOMEBREW_SHARE_DIR="/usr/local/share"
+	export HOMEBREW_OPT_DIR="/usr/local/opt"
+elif [[ "${arch}" == "arm64" ]]; then
+	export HOMEBREW_DIR="/opt/homebrew"
+	export HOMEBREW_OPT_DIR="/opt/homebrew/opt"
+fi
+

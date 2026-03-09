@@ -1,0 +1,6 @@
+return {
+	tools = {
+		"shellcheck",
+		"shfmt",
+	},
+}

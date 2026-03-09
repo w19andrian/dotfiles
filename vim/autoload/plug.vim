@@ -1,0 +1,1 @@
+/home/wmp/.tools/dotfiles/vim/autoload/.modules/vim-plug/plug.vim

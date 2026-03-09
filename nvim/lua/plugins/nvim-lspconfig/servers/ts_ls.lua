@@ -1,0 +1,6 @@
+return {
+	tools = {
+		"eslint",
+		"prettier",
+	},
+}

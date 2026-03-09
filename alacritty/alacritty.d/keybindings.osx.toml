@@ -1,0 +1,7 @@
+[keyboard]
+bindings = [
+{ key = "Left", mods = "Command", chars = "\u0001" },# Cmd + ← → beginning of line (Ctrl+A)
+{ key = "Right", mods = "Command", chars = "\u0005" },  # Cmd + → → end of line (Ctrl+E)
+{ key = "Left", mods = "Alt", chars = "\u001bb" },  # Option + ← → backward word
+{ key = "Right", mods = "Alt", chars = "\u001bf" }  # Option + → → forward word
+]
