@@ -5,4 +5,4 @@ https://github.com/ryanoasis/nerd-fonts/
 * JetBrainsMono
 * MesloLG
 * Hack
-
+* RobotoMono Nerd Font
