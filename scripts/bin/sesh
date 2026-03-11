@@ -5,6 +5,8 @@ ROOT="$HOME/Projekt"
 CREATE_LABEL="[+] Create new project"
 DEFAULT_TERM_LABEL=" Just gimme the goddamn terminal!!"
 DEFAULT_TERM_NAME="termy_4_normy"
+OS_NAME=$(uname | tr '[:upper:]' '[:lower:]')
+_find_bin="find" # initialize _find_bin var for visibility. Will be checked again by set_find_bin()
 
 usage() {
 	cat <<EOF
@@ -18,14 +20,22 @@ Projects live under:
 EOF
 }
 
-require_tmux() {
-	if ! command -v tmux >/dev/null 2>&1; then
-		echo "Error: tmux is not installed or not in PATH."
-		echo "Please install tmux to use this command."
+require_program() {
+	local prog
+	prog=$1
+	if ! command -v "${prog}" >/dev/null 2>&1; then
+		echo "Error: ${prog} is not installed or not in PATH."
+		echo "Please install ${prog} to use this command."
 		exit 1
 	fi
 }
 
+set_find_bin() {
+	if [[ "${OS_NAME}" == "darwin" ]]; then
+		_find_bin="gfind"
+		require_program "${_find_bin}"
+	fi
+}
 switch_or_attach() {
 	local name="$1"
 	local dir="$ROOT/$name"
@@ -51,7 +61,7 @@ create_project() {
 
 interactive_mode() {
 	{
-		find "$ROOT" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort
+		"${_find_bin}" "$ROOT" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' | sort
 		echo "===================="
 		echo "$DEFAULT_TERM_LABEL"
 		echo "────────────────────"
@@ -60,7 +70,8 @@ interactive_mode() {
 }
 
 main() {
-	require_tmux
+	require_program "tmux"
+	set_find_bin
 
 	if [[ $# -eq 0 ]]; then
 		if command -v fzf >/dev/null 2>&1; then
