@@ -10,3 +10,6 @@ vim/plugged/*
 # List of generated config files
 # should not be pushed to git
 *alacritty.toml
+
+# qemu directory
+libvirt/qemu
