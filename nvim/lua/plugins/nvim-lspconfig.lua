@@ -46,6 +46,7 @@ return {
 			terraformls = require("plugins.nvim-lspconfig.servers.terraformls"),
 			ts_ls = require("plugins.nvim-lspconfig.servers.ts_ls"),
 			html = require("plugins.nvim-lspconfig.servers.html"),
+			yamlls = require("plugins.nvim-lspconfig.servers.yaml"),
 		}
 
 		-- Ensure the servers and tools above are installed
