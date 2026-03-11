@@ -36,6 +36,7 @@ set_find_bin() {
 		require_program "${_find_bin}"
 	fi
 }
+
 switch_or_attach() {
 	local name="$1"
 	local dir="$ROOT/$name"
