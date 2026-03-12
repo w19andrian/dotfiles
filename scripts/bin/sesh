@@ -67,7 +67,7 @@ interactive_mode() {
 		echo "$DEFAULT_TERM_LABEL"
 		echo "────────────────────"
 		echo "$CREATE_LABEL"
-	} | fzf --prompt="Projekt > " --height=40% --reverse
+	} | fzf --prompt="Projekt > " --height=40% --reverse --tac
 }
 
 main() {
