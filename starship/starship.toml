@@ -183,7 +183,7 @@ format = '[ ♥ $time ]($style)'
 # symbol = "󱇶 "
 
 [gcloud]
-format = '[$symbol$account(@$domain)(\($project\))]($style) '
+format = '[$symbol$account(\($project\))]($style) '
 style = "fg:green"
 symbol = "󱇶 "
 
