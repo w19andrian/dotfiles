@@ -1,4 +1,3 @@
-
 ##############################################
 ###                                        ###
 ###           General Config               ###
@@ -101,3 +100,7 @@ export GOTOOLCHAIN=auto
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/wandrian/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)

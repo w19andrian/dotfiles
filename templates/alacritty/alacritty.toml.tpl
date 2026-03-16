@@ -5,7 +5,7 @@
 [general]
 import = [
 	"themes/themes/vesper.toml",
-	"alacritty.d/keybindings.#OS_TYPE.toml",
+	"alacritty.d/keybindings.#OS_NAME.toml",
 ]
 
 [window]
