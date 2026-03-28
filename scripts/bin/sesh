@@ -58,9 +58,12 @@ create_project() {
 
 	if is_repo_url "$name"; then
 		echo "repository URL has been detected"
-		name=$(basename "$name")
+		local dir_name
+		dir_name=$(basename "$name" | sed 's/\(.*\)\(\.git$\)/\1/')
 
-		git clone "$name" "$ROOT/$name"
+		git clone "$name" "$ROOT/$dir_name"
+
+		name="$dir_name"
 	else
 		mkdir -p "$ROOT/$name"
 	fi
