@@ -56,8 +56,30 @@ create_project() {
 	read -rp "New project name: " name
 	[[ -z "$name" ]] && exit 0
 
-	mkdir -p "$ROOT/$name"
+	if is_repo_url "$name"; then
+		echo "repository URL has been detected"
+		local dir_name
+		dir_name=$(basename "$name" | sed 's/\(.*\)\(\.git$\)/\1/')
+
+		git clone "$name" "$ROOT/$dir_name"
+
+		name="$dir_name"
+	else
+		mkdir -p "$ROOT/$name"
+	fi
+
 	switch_or_attach "$name"
+}
+
+is_repo_url() {
+	local _git_https='^http(s)?:\/\/([a-z 0-9]*\.)+[a-z]*\/.*\.git$'
+	local _git_ssh='^(ssh:\/\/)?git\@([a-z 0-9]*\.)+[a-z]*(\:[0-9]+)?\/[a-z 0-9]*\/.*\.git$'
+
+	if [[ "${1}" =~ $_git_https || "${1}" =~ $_git_ssh ]]; then
+		return 0
+	else
+		return 1
+	fi
 }
 
 interactive_mode() {
