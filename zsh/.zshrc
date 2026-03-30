@@ -87,8 +87,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Starship prompt
-export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-eval "$(starship init zsh)"
+# export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
+# eval "$(starship init zsh)"
+eval "$(oh-my-posh init zsh --config /home/wmp/.config/ohmyposh/theme.wmp.json)"
 
 bindkey -e
 

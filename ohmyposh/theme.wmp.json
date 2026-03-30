@@ -1,0 +1,71 @@
+{
+  "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+  "palette": {
+    "calm_blue": "#5D92D4",
+    "calm_green": "#5EA666",
+    "calm_red": "#CC6060",
+    "cyan": "#99FFE4",
+    "yellow": "#FFC799",
+    "white": "#EDECEB",
+    "k8s_blue": "#326CE5"
+  },
+  "transient_prompt": {
+    "foreground": "#ffffff",
+    "template": ">> "
+  },
+  "blocks": [
+    {
+      "alignment": "left",
+      "segments": [
+        {
+          "foreground": "p:cyan",
+          "options": {
+            "style": "folder"
+          },
+          "style": "plain",
+          "template": "{{ .PWD }}",
+          "type": "path"
+        },
+        {
+          "foreground": "p:yellow",
+          "options": {
+            "fetch_status": true,
+            "branch_icon": ""
+          },
+          "style": "plain",
+          "template": "::{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <p:calm_red>{{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <p:calm_green>{{ .Staging.String }}</>{{ end }}",
+          "type": "git"
+        }
+      ],
+      "type": "prompt"
+    },
+    {
+      "alignment": "left",
+      "newline": true,
+      "segments": [
+        {
+          "foreground": "#FFFFFF",
+          "style": "plain",
+          "template": ">",
+          "type": "text"
+        }
+      ],
+      "type": "prompt"
+    }
+  ],
+  "tooltips_action": "extend",
+  "tooltips": [
+    {
+      "type": "kubectl",
+      "tips": ["k", "kx", "kns", "kubectl", "kubens", "kubectx"],
+      "foreground": "p:white",
+      "background": "p:k8s_blue",
+      "leading_diamond": "",
+      "trailing_diamond": "",
+      "style": "diamond",
+      "template": "{{ if .Context }}\udb84\udcfe {{ .Context }}{{ if .Namespace }}({{ .Namespace }}){{ end }}{{ end }}"
+    }
+  ],
+  "final_space": true,
+  "version": 4
+}

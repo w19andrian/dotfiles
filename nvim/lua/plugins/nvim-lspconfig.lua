@@ -47,6 +47,7 @@ return {
 			ts_ls = require("plugins.nvim-lspconfig.servers.ts_ls"),
 			html = require("plugins.nvim-lspconfig.servers.html"),
 			yamlls = require("plugins.nvim-lspconfig.servers.yaml"),
+			jsonls = require("plugins.nvim-lspconfig.servers.json"),
 		}
 
 		-- Ensure the servers and tools above are installed
