@@ -30,10 +30,13 @@
           "foreground": "p:yellow",
           "options": {
             "fetch_status": true,
-            "branch_icon": ""
+            "branch_icon": "",
+            "branch_identical_icon": "eq",
+            "branch_ahead_icon": "gt",
+            "branch_behind_icon": "lt"
           },
           "style": "plain",
-          "template": "::{{ .HEAD }}{{ if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} <p:calm_red>{{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <p:calm_green>{{ .Staging.String }}</>{{ end }}",
+          "template": " :: {{ .HEAD }}{{ if .BranchStatus }}[{{ .BranchStatus }}{{ end }}]{{ if .Working.Changed }} <p:calm_red>{{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <p:calm_green>{{ .Staging.String }}</>{{ end }}",
           "type": "git"
         }
       ],
