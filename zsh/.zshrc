@@ -89,7 +89,7 @@ export NVM_DIR="$HOME/.nvm"
 # Starship prompt
 # export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 # eval "$(starship init zsh)"
-eval "$(oh-my-posh init zsh --config /home/wmp/.config/ohmyposh/theme.wmp.json)"
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.wmp.json)"
 
 bindkey -e
 
