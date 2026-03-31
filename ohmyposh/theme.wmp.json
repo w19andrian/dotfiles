@@ -9,10 +9,6 @@
     "white": "#EDECEB",
     "k8s_blue": "#326CE5"
   },
-  "transient_prompt": {
-    "foreground": "#ffffff",
-    "template": ">> "
-  },
   "blocks": [
     {
       "alignment": "left",
@@ -20,7 +16,7 @@
         {
           "foreground": "p:cyan",
           "options": {
-            "style": "folder"
+            "style": "agnoster_short"
           },
           "style": "plain",
           "template": "{{ .PWD }}",
@@ -36,31 +32,50 @@
             "branch_behind_icon": "lt"
           },
           "style": "plain",
-          "template": " :: {{ .HEAD }}{{ if .BranchStatus }}[{{ .BranchStatus }}{{ end }}]{{ if .Working.Changed }} <p:calm_red>{{ .Working.String }}</>{{ end }}{{ if .Staging.Changed }} <p:calm_green>{{ .Staging.String }}</>{{ end }}",
+          "template": " :: {{ .HEAD }}{{ if .BranchStatus }}[{{ .BranchStatus }}]{{ end }}",
           "type": "git"
         }
       ],
       "type": "prompt"
     },
     {
-      "alignment": "left",
-      "newline": true,
+      "alignment": "right",
       "segments": [
         {
-          "foreground": "#FFFFFF",
-          "style": "plain",
-          "template": ">",
-          "type": "text"
+          "foreground": "p:white",
+          "background": "p:calm_red",
+          "options": {
+            "fetch_status": true,
+            "branch_icon": ""
+          },
+          "style": "diamond",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": "{{ if .Working.Changed }}{{ .Working.String }}{{ end }}",
+          "type": "git"
+        },
+        {
+          "foreground": "p:white",
+          "background": "p:calm_green",
+          "options": {
+            "fetch_status": true,
+            "branch_icon": ""
+          },
+          "style": "diamond",
+          "leading_diamond": "",
+          "trailing_diamond": "",
+          "template": "{{ if .Staging.Changed }}{{ .Staging.String }}{{ end }}",
+          "type": "git"
         }
       ],
-      "type": "prompt"
+      "type": "rprompt"
     }
   ],
-  "tooltips_action": "extend",
+  "tooltips_action": "replace",
   "tooltips": [
     {
       "type": "kubectl",
-      "tips": ["k", "kx", "kns", "kubectl", "kubens", "kubectx"],
+      "tips": ["k", "kx", "kns", "kubectl", "kubens", "kubectx", "helm"],
       "foreground": "p:white",
       "background": "p:k8s_blue",
       "leading_diamond": "",
