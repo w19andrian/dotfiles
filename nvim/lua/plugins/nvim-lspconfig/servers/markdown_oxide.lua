@@ -1,6 +1,6 @@
 return {
 	tools = {
-		"markdownlint",
+		"mpls",
 		"mdformat",
 	},
 }

@@ -61,7 +61,7 @@ exec --no-startup-id alacritty --title=mainTerm
 exec --no-startup-id flatpak run com.spotify.Client
 exec --no-startup-id nordvpn-gui
 exec --no-startup-id 1password
-exec --no-startup-id firefox
+exec --no-startup-id zen-bin
 exec --no-startup-id thunderbird
 
 # Disable power saving to prevent auto screen off
@@ -153,9 +153,12 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # Assign apps to workspace
-assign [class="^org.mozilla.firefox$"]  1: 🌏
+assign [title=".*Personal - Zen Browser"]  1: 🌏
+assign [title=".*wmpandrian-dev - Zen Browser"]  1: 🌏
+assign [title=".*WhatsApp — Zen Browser"] 2: 📬
 assign [class="^net.thunderbird.Thunderbird$"] 2: 📬
-assign [title="^mainTerm$"] 3: 👾
+assign [title=".*WhatsApp — Zen Browser"] 2: 📬
+assign [class="^Alacritty$"] 3: 👾
 assign [class="^Spotify$"]  4: 🎧 🎮 🍿
 assign [class="^Stremio$"]  4: 🎧 🎮 🍿
 assign [class="^steam$"]  4: 🎧 🎮 🍿

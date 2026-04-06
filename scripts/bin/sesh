@@ -73,9 +73,10 @@ create_project() {
 
 is_repo_url() {
 	local _git_https='^http(s)?:\/\/([a-z 0-9]*\.)+[a-z]*\/.*\.git$'
-	local _git_ssh='^(ssh:\/\/)?git\@([a-z 0-9]*\.)+[a-z]*(\:[0-9]+)?\/[a-z 0-9]*\/.*\.git$'
+	local _gitea_ssh='^(ssh:\/\/)?git\@([a-z 0-9]*\.)+[a-z]*(\:[0-9]+)?\/[a-z 0-9]*\/.*\.git$'
+	local _github_ssh='git\@([a-z 0-9]*\.)+[a-z]*:[a-z 0-9]*\/.*\.git$'
 
-	if [[ "${1}" =~ $_git_https || "${1}" =~ $_git_ssh ]]; then
+	if [[ "${1}" =~ $_git_https || "${1}" =~ $_gitea_ssh || "${1}" =~ $_github_ssh ]]; then
 		return 0
 	else
 		return 1

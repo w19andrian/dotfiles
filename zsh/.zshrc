@@ -86,9 +86,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Starship prompt
-# export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-# eval "$(starship init zsh)"
+# Oh My Posh prompt
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.wmp.json)"
 
 bindkey -e
@@ -96,12 +94,17 @@ bindkey -e
 # Keybinding Ctrl+Shift+t for 'sesh' tmux session script
 bindkey -s '^T' 'sesh\n'
 
+# Go Toolchain settings. Recommended to set it auto here
+# and set to the desired version in go.mod file in
+# every project
 export GOTOOLCHAIN=auto
+
+# Rust related env vars
+# export RUSTUP_HOME=
+# export CARGO_HOME=
+
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/wandrian/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
