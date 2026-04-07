@@ -1,6 +1,6 @@
 return {
 	"datsfilipe/vesper.nvim",
-	config = {
+	opts = {
 		italics = {
 			comments = false, -- Boolean: Italicizes comments
 			keywords = false, -- Boolean: Italicizes keywords
