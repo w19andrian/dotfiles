@@ -47,3 +47,6 @@ mv "$_tmp_dir/zen-browser.desktop" /usr/share/applications/zen-browser.desktop
 chown root:root /usr/share/applications/zen-browser.desktop
 
 ln --symbolic /usr/local/src/zen/zen-bin /usr/local/bin/zen-bin
+
+# cleaning up
+rm -rf "$_tmp_dir"
