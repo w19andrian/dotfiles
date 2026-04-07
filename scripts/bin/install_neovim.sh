@@ -4,13 +4,13 @@
 
 _tmp_dir="$(mktemp --directory)"
 
-if ! [ "$(id --user)" = 0 ]; then
-	echo "this script requires sudo. Exitting"
+if [[ "$(uname)" != "Linux" ]]; then
+	echo "Unsupported OS. Exitting with error"
 	exit 1
 fi
 
-if [[ "$(uname)" != "Linux" ]]; then
-	echo "Unsupported OS. Exitting with error"
+if ! [ "$(id --user)" = 0 ]; then
+	echo "this script requires sudo. Exitting"
 	exit 1
 fi
 
