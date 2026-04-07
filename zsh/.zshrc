@@ -76,10 +76,10 @@ export EDITOR=nvim
 export PATH=$HOME/.scripts/bin:$PATH
 
 # include GOPATH into PATH
-export PATH=/home/wmp/go/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
 
 # Explicit kubeconfig location statement
-export KUBECONFIG=~/.kube/config
+export KUBECONFIG=$HOME/.kube/config
 
 # NVM(Node Version Manager) configuration
 export NVM_DIR="$HOME/.nvm"
