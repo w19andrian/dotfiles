@@ -27,6 +27,6 @@
 
 ## OSX
 
-* gfind
+* findutils
 * GNU bash
 * aerospace
