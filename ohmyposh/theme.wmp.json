@@ -16,10 +16,10 @@
         {
           "foreground": "p:cyan",
           "options": {
-            "style": "agnoster_short"
+            "style": "agnoster"
           },
           "style": "plain",
-          "template": "{{ .PWD }}",
+          "template": "{{ .Path }}",
           "type": "path"
         },
         {
