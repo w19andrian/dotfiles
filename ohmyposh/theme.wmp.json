@@ -19,7 +19,7 @@
             "style": "agnoster"
           },
           "style": "plain",
-          "template": "{{ .Path }}",
+          "template": "{{ if .Segments.Git }}{{ trimPrefix (regexReplaceAll (printf \"(^.+/)%s.*\" .Segments.Git.RepoName) .Location \"$1\") .Location }}{{ else }}{{ .Path }}{{ end }}",
           "type": "path"
         },
         {
