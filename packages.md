@@ -24,6 +24,7 @@
 * 1password
 * nordvpn
 * k3d(?)
+* yt-dlp
 
 ## OSX
 
