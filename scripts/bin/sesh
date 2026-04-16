@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$HOME/Projekt"
 CREATE_LABEL="[+] Create new project"
 DEFAULT_TERM_LABEL=" Just gimme the goddamn terminal!!"
-DEFAULT_TERM_NAME="termy_4_normy"
+DEFAULT_TERM_NAME="termie_4_normie"
 OS_NAME=$(uname | tr '[:upper:]' '[:lower:]')
 _find_bin="find" # initialize _find_bin var for visibility. Will be checked again by set_find_bin()
 
@@ -25,7 +25,10 @@ require_program() {
 	prog=$1
 	if ! command -v "${prog}" >/dev/null 2>&1; then
 		echo "Error: ${prog} is not installed or not in PATH."
-		echo "required packages from brew: 'fzf' 'findutils'"
+		if [[ "${prog}" == "gfind" ]]; then
+			prog="findutils"
+		fi
+		echo "required package: '${prog}'"
 		exit 1
 	fi
 }

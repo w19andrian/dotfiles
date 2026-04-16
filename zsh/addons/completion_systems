@@ -1,0 +1,5 @@
+# 1Password 
+eval "$(op completion zsh)"; compdef _op op
+
+# kubectl
+eval "$(kubectl completion zsh)"; compdef _kubectl kubectl

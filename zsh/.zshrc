@@ -47,7 +47,7 @@ _cli_zsh_autocomplete() {
 }
 
 # define addons directory; create an empty directory if it doesn't exist
-export _zsh_addons_dir="${HOME}/.${USER}_zsh_addons"
+export _zsh_addons_dir="${HOME}/.zsh/addons"
 [[ ! -d "${_zsh_addons_dir}" ]] && mkdir -p "${_zsh_addons_dir}"
 
 profile_dir="${_zsh_addons_dir}/profiles"
@@ -59,15 +59,11 @@ elif [[ -f "${profile_dir}/${os}" ]]; then
 	source "${profile_dir}/${os}"
 fi
 
-# Enable and initialize the Zsh completion system
-export _zsh_completion_systems="${_zsh_addons_dir}/completion_systems"
-[[ -d "${_zsh_completion_systems}" ]] && fpath=("${_zsh_completion_systems}" $fpath)
-
 autoload -Uz compinit
 compinit
 
-# 1Password zsh completion
-eval "$(op completion zsh)"; compdef _op op
+# Load completion systems
+[[ -f "${_zsh_addons_dir}/completion_systems" ]] && source "${_zsh_addons_dir}/completion_systems"
 
 # Default editor
 export EDITOR=nvim
@@ -107,3 +103,4 @@ export GOTOOLCHAIN=auto
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+export PATH="$HOME/.local/bin:$PATH"
