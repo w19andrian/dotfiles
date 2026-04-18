@@ -82,9 +82,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Oh My Posh prompt
-eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.wmp.json)"
-
 bindkey -e
 
 # Keybinding Ctrl+Shift+t for 'sesh' tmux session script
@@ -99,8 +96,10 @@ export GOTOOLCHAIN=auto
 # export RUSTUP_HOME=
 # export CARGO_HOME=
 
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# Oh My Posh prompt
+eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.wmp.json)"
