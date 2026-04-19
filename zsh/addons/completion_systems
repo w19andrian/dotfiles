@@ -3,3 +3,6 @@ eval "$(op completion zsh)"; compdef _op op
 
 # kubectl
 eval "$(kubectl completion zsh)"; compdef _kubectl kubectl
+
+# kustomize
+eval "$(kustomize completion zsh)"; compdef _kustomize kustomize

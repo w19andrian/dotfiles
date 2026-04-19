@@ -48,6 +48,8 @@ return {
 			html = require("plugins.nvim-lspconfig.servers.html"),
 			yamlls = require("plugins.nvim-lspconfig.servers.yaml"),
 			jsonls = require("plugins.nvim-lspconfig.servers.json"),
+			-- regal is rego lsp & dap
+			regal = {},
 		}
 
 		-- Ensure the servers and tools above are installed
