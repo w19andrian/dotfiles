@@ -6,3 +6,7 @@ eval "$(kubectl completion zsh)"; compdef _kubectl kubectl
 
 # kustomize
 eval "$(kustomize completion zsh)"; compdef _kustomize kustomize
+
+# hugo
+eval "$(hugo completion zsh)"; compdef _hugo hugo
+
