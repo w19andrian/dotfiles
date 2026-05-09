@@ -1,3 +1,6 @@
+# claude
+.claude
+
 # tmux plugins dir
 tmux/plugins/*
 
@@ -13,3 +16,6 @@ vim/plugged/*
 
 # qemu directory
 libvirt/qemu
+
+# zsh completions cache dir
+zsh/addons/completions/cache

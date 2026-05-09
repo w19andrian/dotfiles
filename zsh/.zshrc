@@ -46,36 +46,40 @@ _cli_zsh_autocomplete() {
         return
 }
 
-# define addons directory; create an empty directory if it doesn't exist
 export _zsh_addons_dir="${HOME}/.zsh/addons"
 [[ ! -d "${_zsh_addons_dir}" ]] && mkdir -p "${_zsh_addons_dir}"
 
-profile_dir="${_zsh_addons_dir}/profiles"
-os=$(uname | tr '[:upper:]' '[:lower:]')
+export _zsh_completions_dir="${_zsh_addons_dir}/completions"
 
+profile_dir="${_zsh_addons_dir}/profiles"
+
+os=$(uname | tr '[:upper:]' '[:lower:]')
 if [[ "${os}" != "linux" && "${os}" != "darwin" ]]; then
-	print "unkown operating system. Skipping profile loading"
+	print "unkown operating system. Skip loading profile"
 elif [[ -f "${profile_dir}/${os}" ]]; then
 	source "${profile_dir}/${os}"
 fi
 
-autoload -Uz compinit
-compinit
+# Adds _zsh_completions_dir/cache into fpath if exists
+[[ -d "${_zsh_completions_dir}/cache" ]] && export fpath=("${_zsh_completions_dir}/cache" $fpath)
 
-# Load completion systems
-[[ -f "${_zsh_addons_dir}/completion_systems" ]] && source "${_zsh_addons_dir}/completion_systems"
+# Explicit kubeconfig location statement
+export KUBECONFIG=$HOME/.kube/config
 
 # Default editor
 export EDITOR=nvim
 
-# include scripts dir into PATH
-export PATH=$HOME/.scripts/bin:$PATH
+# include extra dirs to PATH
+export PATH=$HOME/.local/bin:$HOME/.scripts/bin:$PATH
 
-# include GOPATH into PATH
+# Go
+## include GOPATH into PATH
 export PATH=$HOME/go/bin:$PATH
 
-# Explicit kubeconfig location statement
-export KUBECONFIG=$HOME/.kube/config
+## Go Toolchain settings. Recommended to set it auto here
+## and set to the desired version in go.mod file in
+## every project
+export GOTOOLCHAIN=auto
 
 # NVM(Node Version Manager) configuration
 export NVM_DIR="$HOME/.nvm"
@@ -87,11 +91,6 @@ bindkey -e
 # Keybinding Ctrl+Shift+t for 'sesh' tmux session script
 bindkey -s '^T' 'sesh\n'
 
-# Go Toolchain settings. Recommended to set it auto here
-# and set to the desired version in go.mod file in
-# every project
-export GOTOOLCHAIN=auto
-
 # Rust related env vars
 # export RUSTUP_HOME=
 # export CARGO_HOME=
@@ -99,7 +98,11 @@ export GOTOOLCHAIN=auto
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export PATH="$HOME/.local/bin:$PATH"
-
 # Oh My Posh prompt
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.wmp.json)"
+#
+# Load completion systems
+[[ -f "${_zsh_completions_dir}/completion_systems" ]] && source "${_zsh_completions_dir}/completion_systems"
+
+autoload -Uz compinit
+compinit
