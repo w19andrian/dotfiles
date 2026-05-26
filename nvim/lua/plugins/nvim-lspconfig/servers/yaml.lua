@@ -4,6 +4,7 @@ return {
 		"yamlfmt",
 		"kube-linter",
 	},
+	filetypes = { "yaml", "yaml.docker-compose", "yaml.gitlab" },
 	settings = {
 		yaml = {
 			schemas = {

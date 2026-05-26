@@ -83,4 +83,9 @@ vim.filetype.add({
 		tf = "terraform",
 		tfvars = "terraform",
 	},
+	pattern = {
+		[".*/templates/.*%.yaml"] = "helm",
+		[".*/templates/.*%.yml"] = "helm",
+		[".*/templates/.*%.tpl"] = "helm",
+	},
 })

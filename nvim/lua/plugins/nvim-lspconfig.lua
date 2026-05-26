@@ -39,6 +39,7 @@ return {
 		--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
 			-- clangd = {},
+			basedpyright = require("plugins.nvim-lspconfig.servers.python"),
 			gopls = require("plugins.nvim-lspconfig.servers.gopls"),
 			lua_ls = require("plugins.nvim-lspconfig.servers.lua_ls"),
 			markdown_oxide = require("plugins.nvim-lspconfig.servers.markdown_oxide"),
