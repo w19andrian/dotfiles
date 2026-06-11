@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit
+
 ##############################################
 ###                                        ###
 ###           General Config               ###
@@ -103,6 +106,3 @@ eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.wmp.json)"
 #
 # Load completion systems
 [[ -f "${_zsh_completions_dir}/completion_systems" ]] && source "${_zsh_completions_dir}/completion_systems"
-
-autoload -Uz compinit
-compinit

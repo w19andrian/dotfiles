@@ -1,0 +1,176 @@
+/* Catppuccin Mocha */
+@define-color base   #1e1e2e;
+@define-color mantle #181825;
+@define-color crust  #11111b;
+@define-color surface0 #313244;
+@define-color surface1 #45475a;
+@define-color overlay0 #6c7086;
+@define-color text   #cdd6f4;
+@define-color subtext0 #a6adc8;
+@define-color lavender #b4befe;
+@define-color blue   #89b4fa;
+@define-color green  #a6e3a1;
+@define-color yellow #f9e2af;
+@define-color peach  #fab387;
+@define-color red    #f38ba8;
+@define-color maroon #eba0ac;
+
+* {
+    font-family: "JetBrainsMono Nerd Font Mono";
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: @mantle;
+    color: @text;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background-color: @mantle;
+}
+
+/* Base module pill style */
+#workspaces,
+#window,
+#clock,
+#network,
+#wireplumber,
+#cpu,
+#memory,
+#battery,
+#tray,
+#custom-notification {
+    padding: 2px 10px;
+    margin: 3px 2px;
+    border-radius: 6px;
+    background-color: @surface0;
+    color: @text;
+}
+
+/* Workspaces */
+#workspaces button {
+    padding: 0 6px;
+    color: @subtext0;
+    background: transparent;
+    border-radius: 4px;
+}
+
+#workspaces button:hover {
+    background-color: @surface1;
+    color: @text;
+    box-shadow: none;
+}
+
+#workspaces button.focused {
+    background-color: @lavender;
+    color: @mantle;
+    font-weight: bold;
+}
+
+#workspaces button.urgent {
+    background-color: @maroon;
+    color: @mantle;
+}
+
+/* Window title */
+#window {
+    color: @subtext0;
+    font-style: italic;
+}
+
+/* Clock */
+#clock {
+    color: @lavender;
+    font-weight: bold;
+}
+
+/* Network */
+#network {
+    color: @blue;
+}
+
+#network.disconnected {
+    color: @red;
+}
+
+/* Volume */
+#wireplumber {
+    color: @green;
+}
+
+#wireplumber.muted {
+    color: @overlay0;
+}
+
+/* CPU */
+#cpu {
+    color: @peach;
+}
+
+/* Memory */
+#memory {
+    color: @yellow;
+}
+
+/* Battery */
+#battery {
+    color: @green;
+}
+
+#battery.warning {
+    color: @yellow;
+}
+
+#battery.critical {
+    color: @red;
+    animation: blink 1s linear infinite;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @green;
+}
+
+@keyframes blink {
+    to { color: @maroon; }
+}
+
+/* Tray */
+#tray {
+    color: @subtext0;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @maroon;
+}
+
+/* Notification bell */
+#custom-notification {
+    color: @lavender;
+}
+
+#custom-power-profile {
+    color: @green;
+}
+
+#custom-power-profile.power-saver {
+    color: @green;
+}
+
+#custom-power-profile.balanced {
+    color: @yellow;
+}
+
+#custom-power-profile.performance {
+    color: @peach;
+}

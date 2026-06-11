@@ -1,0 +1,210 @@
+# Sway config — ported from i3
+# NVIDIA Wayland env vars
+exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+set $gnome-schema org.gnome.desktop.interface
+exec_always gsettings set $gnome-schema color-scheme prefer-dark
+exec_always gsettings set $gnome-schema gtk-theme Breeze-Dark
+
+# Notification Daemon
+exec swaync
+
+# Blueman
+exec blueman-applet
+
+# ThinkPad touchpad configurations
+input type:keyboard {
+    xkb_options caps:none
+}
+
+input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
+    tap enabled
+    tap_button_map lrm
+    natural_scroll enabled
+}
+
+set $mod Mod4
+
+# Toggle notification control center
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
+font pango:JetBrainsMono Nerd Font Mono 8
+
+# NVIDIA cursor fix
+seat seat0 xcursor_theme default 24
+
+# Wallpaper
+output * bg /usr/share/wallpapers/DarkestHour/contents/images/1920x1080.jpg fill
+
+# Plasma-style float rules (XWayland)
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [class="systemsettings"] floating enable
+
+# Exec apps
+exec alacritty --title=mainTerm
+exec flatpak run com.spotify.Client
+exec nordvpn-gui
+exec 1password
+exec zen-bin
+exec thunderbird
+
+# Drag floating windows
+floating_modifier $mod normal
+
+tiling_drag modifier
+
+# Terminal
+bindsym $mod+Return exec alacritty
+
+# Kill
+bindsym $mod+Shift+q kill
+
+# Window borders
+default_border pixel 1
+default_floating_border pixel 1
+
+gaps inner 3
+gaps outer 1
+
+# Launcher
+bindsym $mod+d exec fuzzel
+
+# Focus (vim)
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move (vim)
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Split
+bindsym $mod+backslash split h
+bindsym $mod+minus split v
+
+# Fullscreen
+bindsym $mod+f fullscreen toggle
+
+# Layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Float toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+
+# Parent
+bindsym $mod+a focus parent
+
+# Workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws11 "11"
+set $wsW "W"
+set $wsE "E"
+set $wsR "R"
+set $wsA "A"
+set $wsS "S"
+set $wsD "D"
+set $wsF "F"
+set $wsZ "Z"
+set $wsX "X"
+set $wsC "C"
+set $wsV "V"
+
+# Switch workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+bindsym $mod+Mod1+Q workspace number $ws11
+
+# Move to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# Assign apps
+assign [app_id=".*zen.*"] $ws1
+assign [class="^net.thunderbird.Thunderbird$"] $ws2
+assign [app_id="^Alacritty$"] $ws3
+assign [class="^Spotify$"] $ws4
+assign [class="^Stremio$"] $ws4
+assign [class="^steam$"] $ws4
+
+# Screenshots
+bindsym $mod+F4 exec grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png
+bindsym $mod+F5 exec grim -g "$(slurp)" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png
+
+# Volume keys
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# Reload / restart / exit
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+
+# Resize mode
+mode "resize" {
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
+
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Bar
+exec waybar
