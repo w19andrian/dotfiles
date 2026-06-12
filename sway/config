@@ -35,7 +35,7 @@ font pango:JetBrainsMono Nerd Font Mono 8
 seat seat0 xcursor_theme default 24
 
 # Wallpaper
-output * bg /usr/share/wallpapers/DarkestHour/contents/images/1920x1080.jpg fill
+output * bg #3f3ca6 solid_color
 
 # Plasma-style float rules (XWayland)
 for_window [window_role="pop-up"] floating enable
