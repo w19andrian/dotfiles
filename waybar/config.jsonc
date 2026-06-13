@@ -12,9 +12,9 @@
 		"clock"
 	],
 	"modules-right": [
-		"custom/power-profile",
 		"network#ethernet",
 		"network#wifi",
+		"power-profiles-daemon",
 		"wireplumber",
 		"cpu",
 		"memory",
@@ -61,12 +61,12 @@
 		]
 	},
 	"cpu": {
-		"format": "  {usage}%",
+		"format": "{usage}%",
 		"interval": 2,
 		"tooltip": false
 	},
 	"memory": {
-		"format": "  {}%",
+		"format": "{}%",
 		"interval": 5,
 		"tooltip-format": "{used:0.1f}G / {total:0.1f}G"
 	},
@@ -92,12 +92,16 @@
 			"󰁹"
 		]
 	},
-	"custom/power-profile": {
-		"exec": "~/.config/waybar/scripts/power-profile.sh",
-		"return-type": "json",
-		"interval": 5,
-		"on-click": "~/.config/waybar/scripts/power-profile.sh toggle && pkill -SIGRTMIN+8 waybar",
-		"tooltip": false
+	"power-profiles-daemon": {
+		"format": "{profile} {icon}",
+		"tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+		"tooltip": true,
+		"format-icons": {
+			"default": "",
+			"performance": "",
+			"balanced": "",
+			"power-saver": ""
+		}
 	},
 	"tray": {
 		"spacing": 8

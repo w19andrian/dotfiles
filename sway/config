@@ -5,7 +5,7 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 
 set $gnome-schema org.gnome.desktop.interface
 exec_always gsettings set $gnome-schema color-scheme prefer-dark
-exec_always gsettings set $gnome-schema gtk-theme Breeze-Dark
+exec_always gsettings set $gnome-schema gtk-theme adw-gtk3-dark
 
 # Notification Daemon
 exec swaync
@@ -13,11 +13,22 @@ exec swaync
 # Blueman
 exec blueman-applet
 
-# ThinkPad touchpad configurations
+# nm-applet
+exec nm-applet
+
+# Idle configuration
+exec swayidle -w \
+	timeout 300 'swaylock -f -c 000000' \
+	timeout 600 'swaymsg "output * power off"' \
+		resume 'swaymsg "output * power on"' \
+	before-sleep 'swaylock -f -c 000000'
+
+# Disable Caps Lock
 input type:keyboard {
     xkb_options caps:none
 }
 
+# ThinkPad touchpad configurations
 input "1267:12679:ELAN0672:00_04F3:3187_Touchpad" {
     tap enabled
     tap_button_map lrm
@@ -181,6 +192,9 @@ bindsym XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 bindsym XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
 bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+# Lock
+bindsym $mod+Ctrl+l exec swaylock -f -c 000000
 
 # Reload / restart / exit
 bindsym $mod+Shift+c reload

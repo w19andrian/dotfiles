@@ -16,7 +16,7 @@
 @define-color maroon #eba0ac;
 
 * {
-    font-family: "JetBrainsMono Nerd Font Mono";
+    font-family: "JetBrainsMono Nerd Font Mono", "Font Awesome 6 Free";
     font-size: 13px;
     border: none;
     border-radius: 0;
