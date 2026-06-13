@@ -1,117 +1,125 @@
 {
-    "layer": "top",
-    "position": "top",
-    "height": 30,
-    "spacing": 4,
-
-    "modules-left": [
-        "sway/workspaces",
-        "sway/mode",
-        "sway/window"
-    ],
-
-    "modules-center": [
-        "clock"
-    ],
-
-    "modules-right": [
-        "custom/power-profile",
-        "network",
-        "wireplumber",
-        "cpu",
-        "memory",
-        "battery",
-        "tray",
-        "custom/notification"
-    ],
-
-    "sway/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
-        "format": "{name}"
-    },
-
-    "sway/window": {
-        "max-length": 50
-    },
-
-    "clock": {
-        "format": "  {:%a %b %d  %H:%M}",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
-    },
-
-    "network": {
-        "interface": "wlp0s20f3",
-        "format-wifi": "  {essid} ({signalStrength}%)",
-        "format-ethernet": "  {ipaddr}",
-        "format-disconnected": "󰤭  Disconnected",
-        "tooltip-format": "{ifname}: {ipaddr}\n{gwaddr} via {essid}",
-        "on-click": "alacritty -e nmtui"
-    },
-
-    "wireplumber": {
-        "format": "{icon}  {volume}%",
-        "format-muted": "󰝟  Muted",
-        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
-        "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
-        "format-icons": ["󰕿", "󰖀", "󰕾"]
-    },
-
-    "cpu": {
-        "format": "  {usage}%",
-        "interval": 2,
-        "tooltip": false
-    },
-
-    "memory": {
-        "format": "  {}%",
-        "interval": 5,
-        "tooltip-format": "{used:0.1f}G / {total:0.1f}G"
-    },
-
-    "battery": {
-        "bat": "BAT0",
-        "states": {
-            "warning": 30,
-            "critical": 15
-        },
-        "format": "{icon}  {capacity}%",
-        "format-charging": "󰂄  {capacity}%",
-        "format-plugged": "󰚥  {capacity}%",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
-    },
-
-    "custom/power-profile": {
-        "exec": "~/.config/waybar/scripts/power-profile.sh",
-        "return-type": "json",
-        "interval": 5,
-        "on-click": "~/.config/waybar/scripts/power-profile.sh toggle && pkill -SIGRTMIN+8 waybar",
-        "tooltip": false
-    },
-
-    "tray": {
-        "spacing": 8
-    },
-
-    "custom/notification": {
-        "tooltip": false,
-        "format": "{icon}",
-        "format-icons": {
-            "notification": "󱅫",
-            "none": "󰂚",
-            "dnd-notification": "󱅫",
-            "dnd-none": "󰂛",
-            "inhibited-notification": "󱅫",
-            "inhibited-none": "󰂚",
-            "dnd-inhibited-notification": "󱅫",
-            "dnd-inhibited-none": "󰂛"
-        },
-        "return-type": "json",
-        "exec-if": "which swaync-client",
-        "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
-        "escape": true
-    }
+	"layer": "top",
+	"position": "top",
+	"height": 30,
+	"spacing": 4,
+	"modules-left": [
+		"sway/workspaces",
+		"sway/mode",
+		"sway/window"
+	],
+	"modules-center": [
+		"clock"
+	],
+	"modules-right": [
+		"custom/power-profile",
+		"network#ethernet",
+		"network#wifi",
+		"wireplumber",
+		"cpu",
+		"memory",
+		"battery",
+		"tray",
+		"custom/notification"
+	],
+	"sway/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+		"format": "{name}"
+	},
+	"sway/window": {
+		"max-length": 50
+	},
+	"clock": {
+		"format": "  {:%a %b %d  %H:%M}",
+		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+	},
+	"network#ethernet": {
+		"interface": "en*",
+		"format-ethernet": "  {ipaddr}",
+		"format-disconnected": "",
+		"tooltip-format": "{ifname}: {ipaddr}/{cidr}\nGW: {gwaddr}",
+		"on-click": "alacritty -e nmtui"
+	},
+	"network#wifi": {
+		"interface": "wl*",
+		"format-wifi": "  {essid} ({signalStrength}%)",
+		"format-disconnected": "",
+		"tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{essid} ({signalStrength}%)",
+		"on-click": "alacritty -e nmtui"
+	},
+	"wireplumber": {
+		"format": "{icon}  {volume}%",
+		"format-muted": "󰝟  Muted",
+		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+		"format-icons": [
+			"󰕿",
+			"󰖀",
+			"󰕾"
+		]
+	},
+	"cpu": {
+		"format": "  {usage}%",
+		"interval": 2,
+		"tooltip": false
+	},
+	"memory": {
+		"format": "  {}%",
+		"interval": 5,
+		"tooltip-format": "{used:0.1f}G / {total:0.1f}G"
+	},
+	"battery": {
+		"bat": "BAT0",
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{icon}  {capacity}%",
+		"format-charging": "󰂄  {capacity}%",
+		"format-plugged": "󰚥  {capacity}%",
+		"format-icons": [
+			"󰁺",
+			"󰁻",
+			"󰁼",
+			"󰁽",
+			"󰁾",
+			"󰁿",
+			"󰂀",
+			"󰂁",
+			"󰂂",
+			"󰁹"
+		]
+	},
+	"custom/power-profile": {
+		"exec": "~/.config/waybar/scripts/power-profile.sh",
+		"return-type": "json",
+		"interval": 5,
+		"on-click": "~/.config/waybar/scripts/power-profile.sh toggle && pkill -SIGRTMIN+8 waybar",
+		"tooltip": false
+	},
+	"tray": {
+		"spacing": 8
+	},
+	"custom/notification": {
+		"tooltip": false,
+		"format": "{icon}",
+		"format-icons": {
+			"notification": "󱅫",
+			"none": "󰂚",
+			"dnd-notification": "󱅫",
+			"dnd-none": "󰂛",
+			"inhibited-notification": "󱅫",
+			"inhibited-none": "󰂚",
+			"dnd-inhibited-notification": "󱅫",
+			"dnd-inhibited-none": "󰂛"
+		},
+		"return-type": "json",
+		"exec-if": "which swaync-client",
+		"exec": "swaync-client -swb",
+		"on-click": "swaync-client -t -sw",
+		"on-click-right": "swaync-client -d -sw",
+		"escape": true
+	}
 }
