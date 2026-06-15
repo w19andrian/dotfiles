@@ -11,8 +11,6 @@
 		"clock"
 	],
 	"modules-right": [
-		"network#ethernet",
-		"network#wifi",
 		"wireplumber",
 		"power-profiles-daemon",
 		"battery",
@@ -22,7 +20,12 @@
 	"sway/workspaces": {
 		"disable-scroll": true,
 		"all-outputs": true,
-		"format": "{name}"
+		"format": "{icon}",
+		"format-icons": {
+			"urgent": "",
+			"focused": "",
+			"default": ""
+		}
 	},
 	"sway/window": {
 		"max-length": 50
@@ -31,23 +34,9 @@
 		"format": "  {:%a %b %d  %H:%M}",
 		"tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
 	},
-	"network#ethernet": {
-		"interface": "en*",
-		"format-ethernet": "  {ipaddr}",
-		"format-disconnected": "",
-		"tooltip-format": "{ifname}: {ipaddr}/{cidr}\nGW: {gwaddr}",
-		"on-click": "alacritty -e nmtui"
-	},
-	"network#wifi": {
-		"interface": "wl*",
-		"format-wifi": "  {essid} ({signalStrength}%)",
-		"format-disconnected": "",
-		"tooltip-format": "{ifname}: {ipaddr}/{cidr}\n{essid} ({signalStrength}%)",
-		"on-click": "alacritty -e nmtui"
-	},
 	"wireplumber": {
-		"format": "{icon}  {volume}%",
-		"format-muted": "󰝟  Muted",
+		"format": "{icon} {volume}%",
+		"format-muted": "󰖁",
 		"on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
 		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
 		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
