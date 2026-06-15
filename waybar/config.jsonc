@@ -41,8 +41,8 @@
 		"on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
 		"on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
 		"format-icons": [
-			"󰕿",
-			"󰖀",
+			"",
+			"",
 			"󰕾"
 		]
 	},
@@ -52,9 +52,9 @@
 		"tooltip": true,
 		"format-icons": {
 			"default": "",
-			"performance": "󱐌",
+			"performance": "",
 			"balanced": "",
-			"power-saver": "󰌪"
+			"power-saver": ""
 		}
 	},
 	"battery": {

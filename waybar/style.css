@@ -106,16 +106,6 @@ window#waybar {
 	color: @overlay0;
 }
 
-/* CPU */
-#cpu {
-	color: @peach;
-}
-
-/* Memory */
-#memory {
-	color: @yellow;
-}
-
 /* Battery */
 #battery {
 	color: @green;
@@ -162,6 +152,7 @@ window#waybar {
 
 #power-profiles-daemon {
 	color: @green;
+	padding-right: 10px;
 }
 
 #power-profiles-daemon.power-saver {
