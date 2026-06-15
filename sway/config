@@ -18,10 +18,10 @@ exec nm-applet
 
 # Idle configuration
 exec swayidle -w \
-	timeout 300 'swaylock -f -c 000000' \
+	timeout 300 'swaylock  -f -c 000000' \
 	timeout 600 'swaymsg "output * power off"' \
 		resume 'swaymsg "output * power on"' \
-	before-sleep 'swaylock -f -c 000000'
+	before-sleep 'swaylock  -f -c 000000'
 
 # Disable Caps Lock
 input type:keyboard {
@@ -157,8 +157,6 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
-bindsym $mod+Mod1+Q workspace number $ws11
 
 # Move to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -170,15 +168,18 @@ bindsym $mod+Shift+6 move container to workspace number $ws6
 bindsym $mod+Shift+7 move container to workspace number $ws7
 bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # Assign apps
-assign [app_id=".*zen.*"] $ws1
+assign [app_id="^app.zen_browser.zen$"] $ws1
 assign [class="^net.thunderbird.Thunderbird$"] $ws2
 assign [app_id="^Alacritty$"] $ws3
-assign [class="^Spotify$"] $ws4
-assign [class="^Stremio$"] $ws4
-assign [class="^steam$"] $ws4
+assign [class="^spotify$"] $ws4
+
+# Inhibit fullscreen
+for_window [app_id="app.zen_browser.zen"] inhibit_idle fullscreen
+for_window [app_id="brave_browser"] inhibit_idle fullscreen
+for_window [app_id="org.jellyfin.JellyfinDesktop"] inhibit_idle fullscreen
+for_window [title="Jellyfin"] inhibit_idle fullscreen
 
 # Screenshots
 bindsym $mod+F4 exec grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png
@@ -194,7 +195,7 @@ bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
 # Lock
-bindsym $mod+Ctrl+l exec swaylock -f -c 000000
+bindsym $mod+Ctrl+l exec swaylock  -f -c 000000
 
 # Reload / restart / exit
 bindsym $mod+Shift+c reload

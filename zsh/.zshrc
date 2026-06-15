@@ -1,6 +1,3 @@
-autoload -Uz compinit
-compinit
-
 ##############################################
 ###                                        ###
 ###           General Config               ###
@@ -104,5 +101,11 @@ export LANG=en_US.UTF-8
 # Oh My Posh prompt
 eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/theme.wmp.json)"
 #
+
+autoload -Uz compinit
+compinit
+
 # Load completion systems
 [[ -f "${_zsh_completions_dir}/completion_systems" ]] && source "${_zsh_completions_dir}/completion_systems"
+
+
