@@ -58,7 +58,7 @@ exec alacritty --title=mainTerm
 exec flatpak run com.spotify.Client
 exec nordvpn-gui
 exec 1password
-exec zen-bin
+exec flatpak run app.zen_browser.zen
 exec thunderbird
 
 # Drag floating windows
@@ -171,9 +171,9 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 
 # Assign apps
 assign [app_id="^app.zen_browser.zen$"] $ws1
-assign [class="^net.thunderbird.Thunderbird$"] $ws2
+assign [app_id="^net.thunderbird.Thunderbird$"] $ws2
 assign [app_id="^Alacritty$"] $ws3
-assign [class="^spotify$"] $ws4
+assign [app_id="^spotify$"] $ws4
 
 # Inhibit fullscreen
 for_window [app_id="app.zen_browser.zen"] inhibit_idle fullscreen
@@ -222,4 +222,4 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Bar
-exec waybar
+exec_always pkill waybar; waybar &
