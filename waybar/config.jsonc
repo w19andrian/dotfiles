@@ -5,8 +5,7 @@
 	"spacing": 4,
 	"modules-left": [
 		"sway/workspaces",
-		"sway/mode",
-		"sway/window"
+		"sway/mode"
 	],
 	"modules-center": [
 		"clock"
@@ -59,14 +58,14 @@
 		]
 	},
 	"power-profiles-daemon": {
-		"format": "{profile} {icon}",
+		"format": "{icon}",
 		"tooltip-format": "Power profile: {profile}\nDriver: {driver}",
 		"tooltip": true,
 		"format-icons": {
 			"default": "",
-			"performance": "",
-			"balanced": "",
-			"power-saver": ""
+			"performance": "󱐌",
+			"balanced": "",
+			"power-saver": "󰌪"
 		}
 	},
 	"battery": {
