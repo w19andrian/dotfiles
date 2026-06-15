@@ -1,4 +1,3 @@
-# Sway config — ported from i3
 # NVIDIA Wayland env vars
 exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
@@ -18,10 +17,10 @@ exec nm-applet
 
 # Idle configuration
 exec swayidle -w \
-	timeout 300 'swaylock  -f -c 000000' \
+	timeout 300 'swaylock -f -c 000000' \
 	timeout 600 'swaymsg "output * power off"' \
 		resume 'swaymsg "output * power on"' \
-	before-sleep 'swaylock  -f -c 000000'
+	before-sleep 'swaylock -f -c 000000'
 
 # Disable Caps Lock
 input type:keyboard {
@@ -133,19 +132,6 @@ set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
-set $ws10 "10"
-set $ws11 "11"
-set $wsW "W"
-set $wsE "E"
-set $wsR "R"
-set $wsA "A"
-set $wsS "S"
-set $wsD "D"
-set $wsF "F"
-set $wsZ "Z"
-set $wsX "X"
-set $wsC "C"
-set $wsV "V"
 
 # Switch workspace
 bindsym $mod+1 workspace number $ws1
@@ -182,8 +168,8 @@ for_window [app_id="org.jellyfin.JellyfinDesktop"] inhibit_idle fullscreen
 for_window [title="Jellyfin"] inhibit_idle fullscreen
 
 # Screenshots
-bindsym $mod+F4 exec grim ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png
-bindsym $mod+F5 exec grim -g "$(slurp)" ~/Pictures/screenshot-$(date +%Y%m%d-%H%M%S).png
+bindsym $mod+F4 exec grim ~/Pictures/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png
+bindsym $mod+F5 exec grim -g "$(slurp)" ~/Pictures/screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png
 
 # Volume keys
 bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
@@ -195,7 +181,7 @@ bindsym XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
 bindsym XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
 # Lock
-bindsym $mod+Ctrl+l exec swaylock  -f -c 000000
+bindsym $mod+Ctrl+l exec swaylock -f -c 000000
 
 # Reload / restart / exit
 bindsym $mod+Shift+c reload

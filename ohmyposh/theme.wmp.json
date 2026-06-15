@@ -33,7 +33,7 @@
             "branch_gone_icon": "x"
           },
           "style": "plain",
-          "template": " :: {{ .HEAD }}{{ if .BranchStatus }}[{{ .BranchStatus }}]{{ end }}",
+          "template": " :: {{ .HEAD }}{{ if .BranchStatus }}[{{ .BranchStatus }}]{{ end }}{{ if gt .StashCount 0 }}(#{{ .StashCount }}){{ end }}",
           "type": "git"
         }
       ],
