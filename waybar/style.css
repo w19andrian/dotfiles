@@ -61,7 +61,7 @@ window#waybar {
 }
 
 #workspaces button:hover {
-	background-color: @surface1;
+	background: transparent;
 	color: @text;
 	box-shadow: none;
 }
@@ -82,35 +82,12 @@ window#waybar {
 	font-style: italic;
 }
 
-/* Clock */
-#clock {
-	color: @text;
-	font-weight: bold;
-}
-
-/* Network */
-#network {
-	color: @blue;
-}
-
-#network.disconnected {
-	color: @red;
-}
-
 /* Volume */
-#wireplumber {
-	color: @green;
-}
-
 #wireplumber.muted {
 	color: @overlay0;
 }
 
 /* Battery */
-#battery {
-	color: @green;
-}
-
 #battery.warning {
 	color: @yellow;
 }
