@@ -24,7 +24,7 @@ generate_conf() {
 	if [[ "${OS_NAME}" == "darwin" ]]; then
 		_sed_cmd_opts="-i ''"
 	else
-		_sed_cmd_group="--in-place"
+		_sed_cmd_opts="--in-place"
 	fi
 
 	if [ ! -d "${tpl_dir}" ]; then

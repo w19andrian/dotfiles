@@ -52,14 +52,6 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [class="systemsettings"] floating enable
 
-# Exec apps
-exec alacritty --title=mainTerm
-exec flatpak run com.spotify.Client
-exec nordvpn-gui
-exec 1password
-exec flatpak run app.zen_browser.zen
-exec thunderbird
-
 # Drag floating windows
 floating_modifier $mod normal
 
@@ -209,3 +201,11 @@ bindsym $mod+r mode "resize"
 
 # Bar
 exec_always pkill waybar; waybar &
+
+# Exec apps
+exec alacritty --title=mainTerm
+exec flatpak run com.spotify.Client
+exec 1password
+exec flatpak run app.zen_browser.zen
+exec thunderbird
+
