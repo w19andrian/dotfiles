@@ -128,18 +128,5 @@ window#waybar {
 }
 
 #power-profiles-daemon {
-	color: @green;
 	padding-right: 10px;
-}
-
-#power-profiles-daemon.power-saver {
-	color: @green;
-}
-
-#power-profiles-daemon.balanced {
-	color: @yellow;
-}
-
-#power-profiles-daemon.performance {
-	color: @peach;
 }

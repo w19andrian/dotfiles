@@ -178,7 +178,13 @@ bindsym $mod+Ctrl+l exec swaylock -f -c 000000
 # Reload / restart / exit
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+bindsym $mod+Shift+e mode "nag"; exec swaynag -t warning -m 'Exit sway?' -B 'Yes' 'swaymsg exit'
+
+mode "nag" {
+    bindsym Return exec swaymsg exit; mode "default"
+    bindsym Escape exec pkill swaynag; mode "default"
+    bindsym q      exec pkill swaynag; mode "default"
+}
 
 # Resize mode
 mode "resize" {
