@@ -49,6 +49,7 @@ return {
 			html = require("plugins.nvim-lspconfig.servers.html"),
 			yamlls = require("plugins.nvim-lspconfig.servers.yaml"),
 			jsonls = require("plugins.nvim-lspconfig.servers.json"),
+			clangd = {},
 			cssls = {},
 			-- regal is rego lsp & dap
 			regal = {},
